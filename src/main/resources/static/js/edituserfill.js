@@ -1,4 +1,19 @@
-$(".btn[data-target='#myModal']").click(function() {
+$(document).on("click", '.btn-success', function() {
+
+    /*
+    $("#LangTable").on("click",".deletelanguage", function(){
+  alert("success");
+});
+
+$('.deletelanguage').live('click',function(){
+    alert("success");
+    $('#LangTable').append(' <br>------------<br> <a class="deletelanguage">Now my class is deletelanguage. click me to test it is not working.</a>');
+});
+
+     */
+
+
+    console.log('form filler script');
     // Get array of column Headings
     var columnHeadings = $("thead th").map(function() {
         return $(this).text();

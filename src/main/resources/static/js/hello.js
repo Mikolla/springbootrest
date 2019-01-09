@@ -15,7 +15,7 @@ $(document).ready(function() {
             var role = userList[i].roles[0];
             console.log(userList[i].id + ' ' + userList[i].login + ' ' + userList[i].name + ' ' + userList[i].password + ' ' + role.roleName + '\r\n');
 
-            $('.table-striped').append(
+            $('#listrole').append(
                 '<tr>' +
                 '<td>' + userList[i].id + '</td>' +
                 '<td>' + userList[i].login + '</td>' +
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 '<td>' + userList[i].password + '</td>' +
                 '<td>' + role.roleName + '</td>' +
                 '<td>' +
-                        '<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Edit</button>'
+                        '<button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>'
                 + '</td>'
                 + '</tr>'
             );
