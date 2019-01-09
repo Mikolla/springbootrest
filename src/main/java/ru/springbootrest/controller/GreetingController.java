@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.springbootrest.model.User;
 import ru.springbootrest.service.abstraction.role.RoleService;
@@ -30,6 +31,15 @@ public class GreetingController {
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
+    } */
+
+
+  /*  @RequestMapping("/test")
+    public String getIndex(Model model){
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        model.addAttribute("name", "TEST");
+        return "index";
     } */
 
 
