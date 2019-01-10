@@ -23,7 +23,7 @@ $(document).on("click", '#edButton', function() {
     console.log('password = ' + password100);
     console.log('role = ' + role100);
     var modalBody = $('<div id="modalContent"></div>');
-    var modalForm = $('<form role="form" name="modalForm" action="/admin/edit" method="post" ></form>');
+    var modalForm = $('<form id="formoid" role="form" name="modalForm" action="/rest/" method="PUT" ></form>');
 
 
     var idForm = $('<div class="form-group"></div>');
@@ -65,6 +65,43 @@ $(document).on("click", '#edButton', function() {
 
 
 });
+
+//$(document).on("click", '#edButton', function()
+$(document).on("click", '.btn-primary', function() {
+    console.log('save button clicked')
+
+    var myform = document.getElementById("formoid");
+    var fd = new FormData(myform);
+
+    console.log('formdata - ' + fd);
+
+    $.ajax({
+        url: "/rest",
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'PUT',
+        success: function (dataofconfirm) {
+           console.log('data saved')
+        }
+    });
+
+
+
+    /*
+    $.ajax({
+    type: 'POST', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+    dataType: 'json', // Set datatype - affects Accept header
+    url: "http://example.com/people/1", // A valid URL
+    headers: {"X-HTTP-Method-Override": "PUT"}, // X-HTTP-Method-Override set to PUT.
+    data: '{"name": "Dave"}' // Some data e.g. Valid JSON as a string
+});
+     */
+
+});
+
 $('.modal-footer .btn-primary').click(function() {
+    console.log('save button clicked')
     $('form[name="modalForm"]').submit();
 });
