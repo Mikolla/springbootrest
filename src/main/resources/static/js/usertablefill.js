@@ -1,15 +1,12 @@
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8080/rest"
+        url: "http://localhost:8080/rest/user/all"
     }).then(function(data) {
         var userList = data;
        $('.greeting-id').append( userList[0].id + '<br/>');
        $('.greeting-content').append( userList[0].name  + '<br/>');
 
-        $('.greeting-id').append( userList[1].id);
-        $('.greeting-content').append( userList[1].name);
 
-        console.log(userList[3].name);
 
         for(var i = 0; i < userList.length; i++) {
             var role = userList[i].roles[0];
@@ -23,7 +20,9 @@ $(document).ready(function() {
                 '<td>' + userList[i].password + '</td>' +
                 '<td>' + role.roleName + '</td>' +
                 '<td>' +
-                        '<button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>'
+                        '<button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>' +
+                        ' ' +
+                        '<button type="button" class="btn btn-primary" id="delButton">Delete</button>'
                 + '</td>'
                 + '</tr>'
             );

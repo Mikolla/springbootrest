@@ -7,7 +7,9 @@
         <div th:replace="fragments/header :: header-css"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="../../js/hello.js"></script>
+        <script src="../../js/usertablefill.js"></script>
+        <script src="../../js/edituserfill.js"></script>
+        <script src="../../js/delbuttonclick.js"></script>
 
     </head>
 
@@ -77,7 +79,7 @@
                                 <td>
                                     <!--    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" contenteditable="false">Edit</button>  -->
                                     <button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>
-                                    <a th:href="'/admin/delete/' + ${user.id}"><button type="button" class="btn btn-primary">Delete</button></a>
+                                    <a th:href="'/admin/delete/' + ${user.id}"><button type="button" class="btn btn-primary" id="delButton">Delete</button></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -167,7 +169,7 @@
             <p class="greeting-content">The content is </p>
         </div>
 
-    <script src="../../js/edituserfill.js"></script>
+
 
     <br/>
     <div th:replace="fragments/footer :: footer"/>

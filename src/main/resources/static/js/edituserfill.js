@@ -1,16 +1,4 @@
-$(document).on("click", '.btn-success', function() {
-
-    /*
-    $("#LangTable").on("click",".deletelanguage", function(){
-  alert("success");
-});
-
-$('.deletelanguage').live('click',function(){
-    alert("success");
-    $('#LangTable').append(' <br>------------<br> <a class="deletelanguage">Now my class is deletelanguage. click me to test it is not working.</a>');
-});
-
-     */
+$(document).on("click", '#edButton', function() {
 
 
     console.log('form filler script');
@@ -54,11 +42,6 @@ $('.deletelanguage').live('click',function(){
 
     idForm.append('<label for="'+columnHeadings[3]+'" style="margin-top: 5%">password</label>');
     idForm.append('<input class="form-control" name="password" id="password" value="'+password100+'" />');
-
-    //  idForm.append('<label for="'+columnHeadings[3]+'">role</label>');
-    //  idForm.append('<input class="form-control" name="role" id="role" value="'+role100+'" />');
-
-
 
     var sel = $('<select class="form-control" name="role" id="role"></select>');
     if (role100 == 'Admin') {
