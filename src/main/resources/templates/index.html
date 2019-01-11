@@ -70,18 +70,7 @@
                             </tr>
                             </thead>
                             <tbody id="listrole">
-                            <tr th:each="user : ${users}">
-                                <td th:text="${user.id}">id</td>
-                                <td th:text="${user.login}">name</td>
-                                <td th:text="${user.name}">login</td>
-                                <td th:text="${user.password}">login</td>
-                                <td th:text="${user.getRoles().toArray()[0].getRoleName()}">login</td>
-                                <td>
-                                    <!--    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" contenteditable="false">Edit</button>  -->
-                                    <button class="btn btn-success" id="edButton" data-toggle="modal" data-target="#myModal">Edit</button>
-                                    <a th:href="'/admin/delete/' + ${user.id}"><button type="button" class="btn btn-primary" id="delButton">Delete</button></a>
-                                </td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
