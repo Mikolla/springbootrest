@@ -10,6 +10,7 @@
         <script src="../../js/usertablefill.js"></script>
         <script src="../../js/edituserfill.js"></script>
         <script src="../../js/delbuttonclick.js"></script>
+        <script src="../../js/adduserclick.js"></script>
 
     </head>
 
@@ -87,7 +88,7 @@
                         <center>
                             <div class="col-md-4"  style="float:inherit">
 
-                                <form role="form" name="modalForm"  align="center"  action="/admin/add" method="post">
+                                <form role="form" id="adduserForm" name="modalForm"  align="center"  action="/test" method="POST">
                                     <!--     <form role="form" class="form-inline"  align="center"   action="/admin/edit" method="POST">  -->
                                     <div class="form-group"  style="float:inherit">
                                         <label for="login" style="margin-top: 5%">login</label>
@@ -104,7 +105,7 @@
                                             <option value="User">User</option>
                                             <option value="Admin">Admin</option>
                                         </select>
-                                        <input type="submit" value="Add new user" class="btn btn-success" style="margin-top: 20px; margin-bottom: 10px;"></input>
+                                        <input type="submit" id="addnewuserButton" value="Add new user" class="btn btn-success" style="margin-top: 20px; margin-bottom: 10px;"></input>
                                     </div>
                                 </form>
                             </div>
