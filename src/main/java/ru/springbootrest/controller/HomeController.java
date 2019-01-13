@@ -49,12 +49,12 @@ public class HomeController {
 
 
 
-	@RequestMapping("/test")
+	@RequestMapping("/adminrest")
 	public String getIndex(Model model){
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("users", users);
         model.addAttribute("name", "TEST");
-		return "index";
+		return "adminrest";
 	}
 
 	@RequestMapping(value="/admin/allusers", method = RequestMethod.GET)

@@ -2,7 +2,6 @@ $(document).on("click", '#delButton', function() {
 
 
     var $tr = $(this).closest('tr');
-
     console.log('form filler script');
     // Get array of column Headings
     var columnHeadings = $("thead th").map(function() {
@@ -25,10 +24,6 @@ $(document).on("click", '#delButton', function() {
     console.log('password to del = ' + password100);
     console.log('role to del = ' + role100);
 
-
-
-
-    console.log('id extracted = ' + id100);
     jQuery.ajax({
         url: 'http://localhost:8080/rest/user/del/' + id100,
         type: 'DELETE',

@@ -23,7 +23,7 @@ $(document).on("click", '#edButton', function() {
     console.log('password = ' + password100);
     console.log('role = ' + role100);
     var modalBody = $('<div id="modalContent"></div>');
-    var modalForm = $('<form id="formoid" role="form" name="modalForm" action="/test" method="POST" ></form>');
+    var modalForm = $('<form id="formoid" role="form" name="modalForm" action="/adminrest" method="POST" ></form>');
 
 
     var idForm = $('<div class="form-group"></div>');
@@ -67,7 +67,7 @@ $(document).on("click", '#edButton', function() {
 });
 
 //$(document).on("click", '#edButton', function()
-$(document).on("click", '.btn-primary', function() {
+$(document).on("click", '#saveUserButton', function() {
     console.log('save button clicked')
 
     var myform = document.getElementById("formoid");
@@ -105,7 +105,7 @@ $(document).on("click", '.btn-primary', function() {
         type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
         dataType: "json", // Set datatype - affects Accept header
         contentType: "application/json; charset=utf-8",
-        url: "http://localhost:8080/rest", // A valid URL
+        url: "http://localhost:8080/rest/user/edit", // A valid URL
         data: jsondata, // Some data e.g. Valid JSON as a string
         headers: {
             'Accept': 'application/json',
