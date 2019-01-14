@@ -45,9 +45,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 
         if(authorities.contains(new Role("Admin"))){
-            return "/admin";
+            return "/adminrest";
         }else if(authorities.contains(new Role("User"))){
-            return "/user";
+            return "/userrest";
         }else {
             //.......
             return "/access_denied";

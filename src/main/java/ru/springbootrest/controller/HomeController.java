@@ -33,14 +33,14 @@ public class HomeController {
 	@Autowired
 	private RoleService roleService;
 
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+/*	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public String getWelcome(ModelMap modelMap) {
 		modelMap.addAttribute("adminRole", new Role("Admin"));
 		modelMap.addAttribute("userRole", new Role("User"));
 		modelMap.addAttribute("adminName", getPrincipal());
 		modelMap.addAttribute("users", userService.getAllUsers());
 		return "welcome";
-	}
+	} */
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(ModelMap modelMap) {
@@ -50,14 +50,19 @@ public class HomeController {
 
 
 	@RequestMapping("/adminrest")
-	public String getIndex(Model model){
-		List<User> users = userService.getAllUsers();
-		model.addAttribute("users", users);
+	public String adminPageREST(Model model){
         model.addAttribute("name", "TEST");
 		return "adminrest";
 	}
 
-	@RequestMapping(value="/admin/allusers", method = RequestMethod.GET)
+	@RequestMapping(value = "/userrest", method = RequestMethod.GET)
+	public String userPageREST(ModelMap modelMap) {
+		modelMap.addAttribute("user", getPrincipal());
+		return "userrest";
+	}
+
+
+/*	@RequestMapping(value="/admin/allusers", method = RequestMethod.GET)
 	public String allUsersGet(Model model){
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("adminRole", new Role("Admin"));
@@ -65,11 +70,11 @@ public class HomeController {
 		model.addAttribute("adminName", getPrincipal());
 		model.addAttribute("users", users);
 		return "allusers";
-	}
+	} */
 
 
 
-	@RequestMapping(value="/admin/adduser", method= RequestMethod.POST)
+/*	@RequestMapping(value="/admin/adduser", method= RequestMethod.POST)
 	public String saveUser     (@RequestParam(value = "name") String name,
 							  @RequestParam(value = "login") String login,
 							  @RequestParam(value = "password") String password,
@@ -95,38 +100,38 @@ public class HomeController {
 
 		userService.saveUser(user);
 		return "redirect:/admin/allusers";
-	}
+	}*/
 
 
-	@RequestMapping(value="/admin/deluser/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value="/admin/deluser/{id}", method = RequestMethod.GET)
 		public String delUser(@PathVariable("id") long id, Model model){
 		long userIdToDel = id;
 		userService.deleteUser(userIdToDel);
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("users", users);
 		return "redirect:/admin/allusers";
-	}
+	}*/
 
-	@RequestMapping(value="/admin/edituser/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value="/admin/edituser/{id}", method = RequestMethod.GET)
 	public String editUser(@PathVariable("id") long id, Model model) {
 		long userIdToEdit = id;
 		User userToEdit =  userService.getUserById(userIdToEdit);
 		model.addAttribute("user", userToEdit);
 		return "edituser";
-	}
+	} */
 
-	@RequestMapping(value="/admin/edit/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value="/admin/edit/{id}", method = RequestMethod.GET)
 	public String editPage(@PathVariable("id") long id, Model model) {
 		long userIdToEdit = id;
 		User userToEdit =  userService.getUserById(userIdToEdit);
 		model.addAttribute("user", userToEdit);
 		return "edit";
-	}
+	} */
 
 
 
 
-	@RequestMapping(value = { "/admin/edit" }, method = RequestMethod.POST)
+/*	@RequestMapping(value = { "/admin/edit" }, method = RequestMethod.POST)
 	public String updateUser(@RequestParam(value = "id") Long id,
 							 @RequestParam(value = "login") String login,
 							 @RequestParam(value = "name") String name,
@@ -152,7 +157,7 @@ public class HomeController {
 		User user = new User(id, name, login, password, roleSet);
 		userService.editUser(user);
 		return "redirect:/admin";
-	}
+	} */
 
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -171,13 +176,13 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value = "/admin/add", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/admin/add", method = RequestMethod.GET)
 	public String addUserPage(ModelMap modelMap) {
 		return "add";
-	}
+	} */
 
 
-	@RequestMapping(value = "/admin/add", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/admin/add", method = RequestMethod.POST)
 	public String addUserPage(@RequestParam(value = "name") String name,
 							  @RequestParam(value = "login") String login,
 							  @RequestParam(value = "password") String password,
@@ -200,7 +205,7 @@ public class HomeController {
 			}
 		}
 		User user = new User(name, login, password, roleSet);
-	/*	String s = new Gson().toJson(user);*/
+	// String s = new Gson().toJson(user);
 
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -210,10 +215,10 @@ public class HomeController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		System.out.println("ALARMA  " +  s);
+	//	System.out.println("ALARMA  " +  s);
 		userService.saveUser(user);
 		return "redirect:/admin";
-	}
+	} */
 
 
 	private String getPrincipal() {
@@ -228,14 +233,14 @@ public class HomeController {
 		return userName;
 	}
 
-	@RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable("id") Long id) {
 		userService.deleteUser(id);
 		return "redirect:/admin";
-	}
+	}*/
 
 
-	@RequestMapping(value = {  "/admin/edituser" }, method = RequestMethod.POST)
+/*	@RequestMapping(value = {  "/admin/edituser" }, method = RequestMethod.POST)
 	public String saveUser(@RequestParam(value = "id") Long id,
 						   @RequestParam(value = "name") String name,
 						   @RequestParam(value = "login") String login,
@@ -262,7 +267,7 @@ public class HomeController {
 
 		userService.editUser(user);
 		return "redirect:/admin/allusers";
-	}
+	}*/
 
 	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
 	public String deniesPage(ModelMap modelMap) {
@@ -279,12 +284,12 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registrationPage(ModelMap modelMap) {
 		return "registration";
-	}
+	}*/
 
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String addUser(@RequestParam(value = "name") String name,
 						  @RequestParam(value = "login") String login,
 						  @RequestParam(value = "password") String password,
@@ -310,7 +315,7 @@ public class HomeController {
 
 		userService.saveUser(user);
 		return "redirect:/";
-	}
+	}*/
 
 
 }

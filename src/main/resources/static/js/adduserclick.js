@@ -31,7 +31,7 @@ $(document).on("click", '#addnewuserButton', function() {
         type: 'POST', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
         dataType: "json", // Set datatype - affects Accept header
         contentType: "application/json; charset=utf-8",
-        url: "http://localhost:8080/rest", // A valid URL
+        url: "http://localhost:8080/rest/user/add", // A valid URL
         data: jsondata, // Some data e.g. Valid JSON as a string
         headers: {
             'Accept': 'application/json',
