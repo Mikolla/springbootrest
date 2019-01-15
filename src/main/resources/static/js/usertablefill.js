@@ -3,8 +3,8 @@ $(document).ready(function() {
         url: "http://localhost:8080/rest/user/all"
     }).then(function(data) {
         var userList = data;
-       $('.greeting-id').append( userList[0].id + '<br/>');
-       $('.greeting-content').append( userList[0].name  + '<br/>');
+        console.log(userList);
+
 
 
 
@@ -28,18 +28,6 @@ $(document).ready(function() {
             );
 
         }
-
-
-        $('.table-striped').append(
-        '<tr>' +
-        '<td>' + 'id' + '</td>' +
-        '<td>' + 'id' + '</td>' +
-        '<td>' + 'id' + '</td>' +
-        '<td>' + 'id' + '</td>' +
-        '<td>' + 'id' + '</td>' +
-        '<td>' + 'id' + '</td>'
-         + '</tr>'
-        );
 
 
     });

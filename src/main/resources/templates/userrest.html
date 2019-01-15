@@ -6,6 +6,8 @@
     <title>Spring Security Example </title>
     <div th:replace="fragments/header :: header-css"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../../js/userdatafill.js"></script>
 </head>
 <body>
 
@@ -29,7 +31,8 @@
     </div>
     <div class="col-md-10" style="background: #f9f9f9; padding-right: 40px; min-height: 85vh;">
                 <h1>User page</h1>
-                <p th:text="'Hello, ' + ${user} + '!'" />
+                <p id="hellouser" />
+        <span id="userdataid"></span><span id="userdatalogin"></span><span id="userdataname"></span><span id="userdatapassword"></span><span id="userdatarole"></span>
             </div>
         </div>
 

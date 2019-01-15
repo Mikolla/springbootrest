@@ -51,7 +51,6 @@ public class HomeController {
 
 	@RequestMapping("/adminrest")
 	public String adminPageREST(Model model){
-        model.addAttribute("name", "TEST");
 		return "adminrest";
 	}
 
@@ -159,12 +158,13 @@ public class HomeController {
 		return "redirect:/admin";
 	} */
 
-
+/*
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String userPage(ModelMap modelMap) {
 		modelMap.addAttribute("user", getPrincipal());
 		return "user";
 	}
+*/
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(ModelMap modelMap) throws Exception {
