@@ -25,8 +25,8 @@ public class HomeController {
 		return "welcome";
 	} */
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage(ModelMap modelMap) {
+	@RequestMapping(value = "/login")
+	public String loginPage() {
 	    return "login";
 	}
 
@@ -35,13 +35,13 @@ public class HomeController {
 		return "adminrest";
 	}
 
-	@RequestMapping(value = "/userrest", method = RequestMethod.GET)
-	public String userPageREST(ModelMap modelMap) {
+	@RequestMapping(value = "/userrest")
+	public String userPageREST() {
 		return "userrest";
 	}
 
-	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
-	public String deniesPage(ModelMap modelMap) {
+	@RequestMapping(value = "/access_denied")
+	public String deniesPage() {
 		return "access_denied";
 	}
 
