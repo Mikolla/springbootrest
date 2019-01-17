@@ -17,18 +17,5 @@ $(document).ready(function() {
         $('#userdatapassword').append( 'password = ' + userlogined.password  + '; ');
         $('#userdatarole').append( 'role = ' + userlogined.roles[0].roleName  + '.');
 
-/*
-        <div>
-        <p class="greeting-id">The ID is </p>
-        <p class="greeting-content">The content is </p>
-        </div>
-       */
-
-
-
-
-
-
-
     });
 });

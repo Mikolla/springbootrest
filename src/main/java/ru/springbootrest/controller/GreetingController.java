@@ -76,12 +76,12 @@ public class GreetingController {
 
     @RequestMapping(value = "/user/edit", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> updateCustomer(@RequestBody @Valid User user) {
-        HttpHeaders headers = new HttpHeaders();
+
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
        userService.editUser(user);
-        return new ResponseEntity<>(user, headers, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 

@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "Name", length = 20, nullable = false)
+    //@Size(min=3, max=4)
     private String name;
 
     @Column(name = "Login", length = 20, nullable = false, unique = true)
