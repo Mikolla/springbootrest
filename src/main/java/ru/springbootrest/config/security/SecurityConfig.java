@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.csrf().disable().addFilterBefore(filter, CsrfFilter.class);
-        http.authorizeRequests()
+      /*  http.authorizeRequests()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/userrest/**").hasAnyAuthority("Admin", "User")
               //  .antMatchers("/user/**").hasAnyAuthority("Admin")
@@ -40,6 +40,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").successHandler(successHandler)
                 .usernameParameter("username").passwordParameter("password")
                 .and().exceptionHandling().accessDeniedPage("/access_denied")
-         ;
+         ; */
+
+        http.authorizeRequests()
+                .antMatchers("/userrest/**").permitAll()
+                .antMatchers("/adminrest/**").permitAll()
+                .antMatchers("/").hasAnyAuthority("Admin", "User")
+                .and().formLogin().loginPage("/login").successHandler(successHandler)
+                .usernameParameter("username").passwordParameter("password")
+                .and().exceptionHandling().accessDeniedPage("/access_denied")
+        ;
+
     }
 }

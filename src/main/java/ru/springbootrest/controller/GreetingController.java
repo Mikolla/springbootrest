@@ -25,7 +25,7 @@ public class GreetingController {
     @Autowired
     private RoleService roleService;
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> getUser(@PathVariable("id") Long userId) {
         if (userId == null) {
@@ -38,7 +38,7 @@ public class GreetingController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
@@ -48,7 +48,7 @@ public class GreetingController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/del/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long userId) {
         User user = userService.getUserById(userId);
@@ -61,7 +61,7 @@ public class GreetingController {
 
 
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> saveCustomer(@RequestBody @Valid User user) {
 
@@ -73,7 +73,7 @@ public class GreetingController {
     }
 
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/edit", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> updateCustomer(@RequestBody @Valid User user) {
 
@@ -85,7 +85,7 @@ public class GreetingController {
     }
 
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/principal", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> getUserPrincipal() {
         User user = getPrincipalUser();
