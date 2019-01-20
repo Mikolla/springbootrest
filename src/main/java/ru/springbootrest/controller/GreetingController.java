@@ -1,5 +1,8 @@
 package ru.springbootrest.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -69,6 +72,13 @@ public class GreetingController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         userService.saveUser(user);
+        Gson g = new Gson();
+        String str = g.toJson(user);
+        System.out.println(str);
+
+        String sss = "{\"name\":\"66q6\",\"login\":\"66q6\",\"password\":\"66q6\",\"roles\":[{\"id\":2,\"roleName\":\"User\"}]}";
+        User u = g.fromJson(sss, User.class);
+        userService.saveUser(u);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
