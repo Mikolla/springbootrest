@@ -76,9 +76,9 @@ public class GreetingController {
         String str = g.toJson(user);
         System.out.println(str);
 
-        String sss = "{\"name\":\"66q6\",\"login\":\"66q6\",\"password\":\"66q6\",\"roles\":[{\"id\":2,\"roleName\":\"User\"}]}";
-        User u = g.fromJson(sss, User.class);
-        userService.saveUser(u);
+     //   String sss = "{\"name\":\"66q6\",\"login\":\"66q6\",\"password\":\"66q6\",\"roles\":[{\"id\":2,\"roleName\":\"User\"}]}";
+     //   User u = g.fromJson(sss, User.class);
+
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
