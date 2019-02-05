@@ -6,6 +6,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="../../js/glogin.js"></script>
     <meta name="google-signin-client_id" content="353616429679-s7k7v4o6q3t91g2nsdmauvo82uunv19d.apps.googleusercontent.com"></meta>
 </head>
 <body>
@@ -61,32 +62,11 @@
     <p id = "gemaildata"></p>
 </div>
 <script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        var gid = profile.getId();
-        var name = profile.getName();
-        var email = profile.getEmail();
-        console.log('ID: ' + gid); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + name);
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + email); // This is null if the 'email' scope is not present.
-        console.log('GivenName = ' + profile.getGivenName());
-        console.log('FamilyName = ' + profile.getFamilyName());
-        if(gid != null) {
-            document.getElementById("giddata").innerHTML ='user google ID = ' +  gid + '<br></br>';
-            $('#gnamedata').text('user google name = ' +  name).append('<br></br>');
-            $('#gemaildata').text('user google email = ' +  email);
-        }
-    }
+
 </script>
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
-    }
+
 
 </script>
 
