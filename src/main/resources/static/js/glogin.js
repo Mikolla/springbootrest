@@ -20,6 +20,36 @@ function onSignIn(googleUser) {
 
         $('#gnamedata').text('user google name = ' +  name).append('\r\n');
         $('#gemaildata').text('user google email = ' +  email);
+
+
+     /*  jQuery.ajax({
+           url: "http://localhost:8080/restu/user/" + id_token,
+            type: 'GET',
+            success: function(data) {
+
+                var tokenGot = data;
+                console.log('You have got a token = ' + tokenGot);
+            }
+        }); */
+
+
+        $.ajax({
+            url: "http://localhost:8080/rest/user/token"
+        }).then(function(data) {
+            var tokenGot = data;
+            console.log('You have got a token = ' + tokenGot);
+
+        });
+
+     /*   $.ajax({
+            url: "http://localhost:8080/restu/user/" + id_token
+        }).then(function(data) {
+            var tokenGot = data;
+            console.log('You have got a token = ' + tokenGot);
+        }); */
+
+
+
     }
 }
 

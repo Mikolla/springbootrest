@@ -28,16 +28,14 @@ public class CreateValidateUserController {
         private RoleService roleService;
 
         @CrossOrigin(origins = "*")
-        @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-        public ResponseEntity<User> getUser(@PathVariable("id") Long userId) {
-            if (userId == null) {
+        @RequestMapping(value = "/user/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        public ResponseEntity<String> getToken(@PathVariable("token") String token) {
+            System.out.println("Token got = " + token);
+            if (token == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            User user = userService.getUserById(userId);
-            if (user == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(user, HttpStatus.OK);
+
+            return new ResponseEntity<String>(token, HttpStatus.OK);
         }
 
 
