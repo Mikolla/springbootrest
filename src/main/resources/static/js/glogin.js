@@ -34,9 +34,10 @@ function onSignIn(googleUser) {
 
 
         $.ajax({
-            url: "http://localhost:8080/rest/user/token"
+            url: "http://localhost:8080/restU/user/token/" + id_token
         }).then(function(data) {
             var tokenGot = data;
+            console.log('You have got a token = ');
             console.log('You have got a token = ' + tokenGot);
 
         });

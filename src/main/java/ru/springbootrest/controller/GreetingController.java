@@ -106,12 +106,6 @@ public class GreetingController {
     }
 
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/user/token", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<User> getUserPrincipal1() {
-
-        return new ResponseEntity<>(new User(), HttpStatus.OK);
-    }
 
 
 
