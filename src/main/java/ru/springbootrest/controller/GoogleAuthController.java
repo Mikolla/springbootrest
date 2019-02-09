@@ -4,6 +4,9 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.JsonStructure;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.LowLevelHttpRequest;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -100,11 +103,21 @@ public class GoogleAuthController {
         Map<String, String> read = gson.fromJson(j1string, type);
 
 
+        DecodedJWT jwt = JWT.decode(token);
+        String uName = jwt.getClaim("name").asString();
+        String uEmal = jwt.getClaim("email").asString();
+        System.out.println("user name decoded = " + uName);
+        System.out.println("user email decoded = " + uEmal);
+
+
+
+
         Role role = new Role("User");
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role); role.setId(2L);
-       // User newUser = new User(name, login, password, roleSet);
-
+        String defaultPassword = "1234";
+        User newUser = new User(uName, uEmal, defaultPassword, roleSet);
+        userService.saveUser(newUser);
 
 
         return new ResponseEntity<>(token, HttpStatus.OK);
@@ -151,4 +164,28 @@ public class GoogleAuthController {
 
 
 
+ */
+
+/*
+{  "iss": "accounts.google.com",  "azp": "353616429679-s7k7v4o6q3t91g2nsdmauvo82uunv19d.apps.googleusercontent.com",  "aud": "353616429679-s7k7v4o6q3t91g2nsdmauvo82uunv19d.apps.googleusercontent.com",  "sub": "112060097299776043047",  "email": "miqolay@gmail.com",  "email_verified": "true",  "at_hash": "05V20kBo6QL6PMIN4n5C4w",  "name": "Nikolay Bondarenko",  "picture": "https://lh3.googleusercontent.com/-FIS79YpaQvw/AAAAAAAAAAI/AAAAAAAAHvc/Az5YSZzjDm0/s96-c/photo.jpg",  "given_name": "Nikolay",  "family_name": "Bondarenko",  "locale": "ru",  "iat": "1549685094",  "exp": "1549688694",  "jti": "b7bd5fda0838d09c73d7c2b5a543ec566aa36b9f",  "alg": "RS256",  "kid": "7c309e3a1c1999cb0404ab7125ee40b7cdbcaf7d",  "typ": "JWT"}
+jstr = {
+  "iss": "accounts.google.com",
+  "azp": "353616429679-s7k7v4o6q3t91g2nsdmauvo82uunv19d.apps.googleusercontent.com",
+  "aud": "353616429679-s7k7v4o6q3t91g2nsdmauvo82uunv19d.apps.googleusercontent.com",
+  "sub": "112060097299776043047",
+  "email": "miqolay@gmail.com",
+  "email_verified": "true",
+  "at_hash": "05V20kBo6QL6PMIN4n5C4w",
+  "name": "Nikolay Bondarenko",
+  "picture": "https://lh3.googleusercontent.com/-FIS79YpaQvw/AAAAAAAAAAI/AAAAAAAAHvc/Az5YSZzjDm0/s96-c/photo.jpg",
+  "given_name": "Nikolay",
+  "family_name": "Bondarenko",
+  "locale": "ru",
+  "iat": "1549685094",
+  "exp": "1549688694",
+  "jti": "b7bd5fda0838d09c73d7c2b5a543ec566aa36b9f",
+  "alg": "RS256",
+  "kid": "7c309e3a1c1999cb0404ab7125ee40b7cdbcaf7d",
+  "typ": "JWT"
+}
  */
