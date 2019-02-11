@@ -59,11 +59,11 @@ public class GoogleAuthController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/token/{tok:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Object> getToken(@PathVariable("tok") String token) throws IOException, GeneralSecurityException {
+    public ResponseEntity<User> getToken(@PathVariable("tok") String token) throws IOException, GeneralSecurityException {
         System.out.println(token);
 
 
-
+/*
         String url = "https://oauth2.googleapis.com/tokeninfo?id_token=" + token.trim();
 
         URL obj = new URL(url);
@@ -101,6 +101,9 @@ public class GoogleAuthController {
 
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         Map<String, String> read = gson.fromJson(j1string, type);
+*/
+
+
 
 
         DecodedJWT jwt = JWT.decode(token);
@@ -110,17 +113,27 @@ public class GoogleAuthController {
         System.out.println("user email decoded = " + uEmal);
 
 
+       User newUser = null;
+
+        try {
+            newUser = userService.getUserByLogin(uEmal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (newUser==null) {
+             Role role = new Role("User");
+             Set<Role> roleSet = new HashSet<>();
+             roleSet.add(role);
+             role.setId(2L);
+             String defaultPassword = "1234";
+             newUser = new User(uName, uEmal, defaultPassword, roleSet);
+             userService.saveUser(newUser);
+         }
 
 
-        Role role = new Role("User");
-        Set<Role> roleSet = new HashSet<>();
-        roleSet.add(role); role.setId(2L);
-        String defaultPassword = "1234";
-        User newUser = new User(uName, uEmal, defaultPassword, roleSet);
-        userService.saveUser(newUser);
 
-
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<User>(newUser, HttpStatus.OK);
     }
 
 
