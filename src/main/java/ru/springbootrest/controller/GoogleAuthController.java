@@ -22,7 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import ru.springbootrest.model.Role;
@@ -34,6 +39,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.*;
 import java.lang.reflect.Type;
@@ -50,6 +56,8 @@ import static com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.parse;
 @RequestMapping("/restU")
 public class GoogleAuthController {
 
+    @Autowired
+    AuthenticationManager authenticationManager;
     @Autowired
     private UserService userService;
     @Autowired
@@ -113,7 +121,8 @@ public class GoogleAuthController {
         System.out.println("user email decoded = " + uEmal);
 
 
-       User newUser = null;
+        User newUser = null;
+        String defaultPassword = "1234";
 
         try {
             newUser = userService.getUserByLogin(uEmal);
@@ -126,10 +135,15 @@ public class GoogleAuthController {
              Set<Role> roleSet = new HashSet<>();
              roleSet.add(role);
              role.setId(2L);
-             String defaultPassword = "1234";
              newUser = new User(uName, uEmal, defaultPassword, roleSet);
              userService.saveUser(newUser);
          }
+
+
+        UsernamePasswordAuthenticationToken tok = new UsernamePasswordAuthenticationToken(uEmal, defaultPassword);
+        Authentication auth = authenticationManager.authenticate(tok);
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(auth);
 
 
 
@@ -201,4 +215,7 @@ jstr = {
   "kid": "7c309e3a1c1999cb0404ab7125ee40b7cdbcaf7d",
   "typ": "JWT"
 }
+
+
+ byte[] out = "{\"username\":\"root\",\"password\":\"password\"}" .getBytes(StandardCharsets.UTF_8);
  */

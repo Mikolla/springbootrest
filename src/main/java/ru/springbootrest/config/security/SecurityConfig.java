@@ -2,6 +2,7 @@ package ru.springbootrest.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,6 +15,8 @@ import ru.springbootrest.config.security.service.AuthenticationService;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
     @Autowired
     private AuthenticationService authenticationService;
 
@@ -43,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          ; */
 
         http.authorizeRequests()
-                .antMatchers("/userrest/**").permitAll()
-                .antMatchers("/adminrest/**").permitAll()
+                .antMatchers("/userrest/**").hasAnyAuthority("Admin", "User")
+                .antMatchers("/adminrest/**").hasAnyAuthority("Admin")
                 .antMatchers("/").hasAnyAuthority("Admin", "User")
                 .and().formLogin().loginPage("/login").successHandler(successHandler)
                 .usernameParameter("username").passwordParameter("password")
