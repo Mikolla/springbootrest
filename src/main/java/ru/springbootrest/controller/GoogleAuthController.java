@@ -150,7 +150,17 @@ public class GoogleAuthController {
         return new ResponseEntity<User>(newUser, HttpStatus.OK);
     }
 
-
+/*
+ @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/user/principal", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<User> getUserPrincipal() {
+        User user = getPrincipalUser();
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+ */
 
 
 

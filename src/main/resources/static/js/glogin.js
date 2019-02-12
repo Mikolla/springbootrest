@@ -33,14 +33,24 @@ function onSignIn(googleUser) {
         }); */
 
 
-        $.ajax({
-            url: "http://localhost:8080/restU/user/token/" + id_token
-        }).then(function(data) {
-            var tokenGot = data;
-            console.log('You have got a token = ');
-            console.log('You have got a token = ' + tokenGot);
+        var checkbox = document.getElementById('chebo');
+        if (checkbox.checked) {
+            console.log('checkbox checked');
+            $.ajax({
+                url: "http://localhost:8080/restU/user/token/" + id_token
+            }).then(function(data) {
+                var userlogined = data;
+                var role = userlogined.roles[0].roleName;
+                console.log('You have got a data = ');
+                console.info(data);
+                console.log('User in data base has role as = ' + role);
 
-        });
+            });
+        }
+
+
+
+
 
      /*   $.ajax({
             url: "http://localhost:8080/restu/user/" + id_token
