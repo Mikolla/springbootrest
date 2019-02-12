@@ -44,6 +44,8 @@ function onSignIn(googleUser) {
                 console.log('You have got a data = ');
                 console.info(data);
                 console.log('User in data base has role as = ' + role);
+                if(role == 'User') {window.location.href = "http://localhost:8080/userrest"}
+                else if(role == 'Admin') {window.location.href = "http://localhost:8080/adminrest"}
 
             });
         }
