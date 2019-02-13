@@ -44,8 +44,14 @@ function onSignIn(googleUser) {
                 console.log('You have got a data = ');
                 console.info(data);
                 console.log('User in data base has role as = ' + role);
-                if(role == 'User') {window.location.href = "http://localhost:8080/userrest"}
-                else if(role == 'Admin') {window.location.href = "http://localhost:8080/adminrest"}
+                if(role == 'User') {
+                    window.location.href = "http://localhost:8080/userrest"
+                console.log('goto User page as user')
+                }
+                else if(role == 'Admin') {
+                    window.location.href = "http://localhost:8080/adminrest"
+                    console.log('goto Admin page as admin')
+                }
 
             });
         }
@@ -70,5 +76,8 @@ function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
         console.log('User signed out.');
+        document.getElementById("giddata").innerHTML ='user just log out';
+        document.getElementById("gnamedata").innerHTML ='';
+        document.getElementById("gemaildata").innerHTML ='';
     });
 }
